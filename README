@@ -1,0 +1,21 @@
+This is puppet-yum a puppet module for yum.
+
+Please read the INSTALL file for instructions on getting this installed.
+Look in the examples/ folder for usage. If none exist, please contribute one!
+This code may be a work in progress. The interfaces may change without notice.
+Patches are welcome, but please be patient. They are best received by email.
+Please ping me if you have big changes in mind, before you write a giant patch.
+
+Module specific notes:
+* This module has some additional "magic" functionality.
+* You probably don't need it, and aren't interested in it, so please ignore.
+* This isn't intended as an "awesome, do everything yum" module.
+* This is intended to be good enough for what I needed, for other dependencies.
+
+Dependencies:
+* puppetlabs-stdlib (required)
+
+
+Happy hacking,
+James Shubin <james@shubin.ca>, https://ttboj.wordpress.com/
+

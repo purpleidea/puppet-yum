@@ -1,0 +1,45 @@
+<% if @baseurl != '' || @mirrorlist != '' -%>
+[<%= @name %>]
+name=<%= @name %>
+	<%- if @baseurl != '' -%>
+baseurl=<%= @baseurl %>
+	<%- end -%>
+	<%- if @mirrorlist != '' -%>
+mirrorlist=<%= @mirrorlist %>
+	<%- end -%>
+enabled=<%= @bool_enabled %>
+gpgcheck=<%= @bool_gpgcheck %>
+	<%- if @namespace == '' -%><%# if exists, magic gpgkey integration is enabled -%>
+		<%- if @gpgkeys != '' -%>
+gpgkey=<%= @gpgkeys %>
+		<%- end -%>
+	<%- else -%>
+		<%-# start magic gpgkey integration -%>
+		<%- if (@gpgkeys.is_a?(Array) and @gpgkeys.length > 0 and @gpgkeys.map{|z| ['file://', 'http://', 'ftp://', namespace+':'].map{|w| z.start_with?(w)}.any? }.all?) or (@gpgkeys.is_a?(String) and ['file://', 'http://', 'ftp://', namespace+':'].map{|z| @gpgkeys.start_with?(z)}.any?) -%>
+gpgkey=<% if @gpgkeys.is_a?(Array) -%>
+				<%- @gpgkeys.each do |y| -%>
+					<%- if y.start_with?('file://') -%>
+<%= y %>
+					<%- else -%>
+file:///etc/pki/rpm-gpg/RPM-GPG-KEY-<%= @namespace %>-<%= @name %>-<%= @gpgkeys.index(y) %>
+					<%- end -%>
+				<%- end -%>
+			<%- else -%>
+				<%- if @gpgkeys.start_with?('file://') -%>
+<%= @gpgkeys %>
+				<%- else -%>
+file:///etc/pki/rpm-gpg/RPM-GPG-KEY-<%= @namespace %>-<%= @name %>
+				<%- end -%>
+			<%- end -%>
+		<%- end -%>
+		<%-# end magic gpgkey integration -%>
+	<%- end -%>
+priority=<%= @priority %>
+	<%- if @includepkgs != [] -%>
+includepkgs=<%= @includepkgs.join(' ') %>
+	<%- end -%>
+	<%- if @excludepkgs != [] -%>
+exclude=<%= @excludepkgs.join(' ') %>
+	<%- end -%>
+<% end -%>
+
