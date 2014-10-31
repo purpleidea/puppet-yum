@@ -15,7 +15,7 @@ gpgkey=<%= @gpgkeys %>
 		<%- end -%>
 	<%- else -%>
 		<%-# start magic gpgkey integration -%>
-		<%- if (@gpgkeys.is_a?(Array) and @gpgkeys.length > 0 and @gpgkeys.map{|z| ['file://', 'http://', 'ftp://', namespace+':'].map{|w| z.start_with?(w)}.any? }.all?) or (@gpgkeys.is_a?(String) and ['file://', 'http://', 'ftp://', namespace+':'].map{|z| @gpgkeys.start_with?(z)}.any?) -%>
+		<%- if (@gpgkeys.is_a?(Array) and @gpgkeys.length > 0 and @gpgkeys.map{|z| ['file://', 'http://', 'https://', 'ftp://', namespace+':'].map{|w| z.start_with?(w)}.any? }.all?) or (@gpgkeys.is_a?(String) and ['file://', 'http://', 'https://', 'ftp://', namespace+':'].map{|z| @gpgkeys.start_with?(z)}.any?) -%>
 gpgkey=<% if @gpgkeys.is_a?(Array) -%>
 				<%- @gpgkeys.each do |y| -%>
 					<%- if y.start_with?('file://') -%>
