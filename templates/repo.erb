@@ -10,7 +10,11 @@ mirrorlist=<%= @mirrorlist %>
 enabled=<%= @bool_enabled %>
 gpgcheck=<%= @bool_gpgcheck %>
 	<%- if @namespace == '' -%><%# if exists, magic gpgkey integration is enabled -%>
-		<%- if @gpgkeys != '' -%>
+		<%- if (@gpgkeys.is_a?(Array) and @gpgkeys.length > 0) -%>
+gpgkey=<%- @gpgkeys.each do |y| -%>
+<%= y %>
+<%- end -%>
+		<%- elsif @gpgkeys != '' -%>
 gpgkey=<%= @gpgkeys %>
 		<%- end -%>
 	<%- else -%>
