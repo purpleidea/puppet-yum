@@ -25,8 +25,8 @@ SPEC = rpmbuild/SPECS/puppet-yum.spec
 SOURCE = rpmbuild/SOURCES/puppet-yum-$(VERSION).tar.bz2
 SRPM = rpmbuild/SRPMS/puppet-yum-$(VERSION)-$(RELEASE).src.rpm
 RPM = rpmbuild/RPMS/puppet-yum-$(VERSION)-$(RELEASE).rpm
-SERVER = 'download.gluster.org'
-REMOTE_PATH = 'purpleidea/puppet-yum'
+SERVER = 'dl.fedoraproject.org'
+REMOTE_PATH = 'pub/puppet-yum'
 
 all: docs rpm
 
